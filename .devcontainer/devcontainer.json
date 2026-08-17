@@ -1,0 +1,38 @@
+{
+  "name": "packer-learning",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  // Mount your local AWS credentials read-only so `packer build` can
+  // authenticate without baking keys into the image or env vars.
+  // "mounts": [
+  //   "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,readonly"
+  // ],
+
+  // Persist downloaded Packer plugins between container rebuilds.
+  "containerEnv": {
+    "AWS_PROFILE": "packer-learning"
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "hashicorp.hcl",
+        "hashicorp.terraform",
+        "amazonwebservices.aws-toolkit-vscode",
+        "timonwong.shellcheck"
+      ],
+      "settings": {
+        "files.associations": {
+          "*.pkr.hcl": "hcl",
+          "*.pkrvars.hcl": "hcl"
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "packer version && aws --version",
+
+  "remoteUser": "vscode"
+}
