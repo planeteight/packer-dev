@@ -21,11 +21,23 @@ variable "instance_type" {
   default = "t3.micro"
 }
 
+variable "vpc_id" {
+  type    = string
+  default = "vpc-0f9c1e3e"
+}
+
+variable "subnet_id" {
+  type    = string
+  default = "subnet-0f9c1e3e"
+}
+
 source "amazon-ebs" "ubuntu" {
   ami_name      = "packer-learning-minimal-{{timestamp}}"
   instance_type = var.instance_type
   region        = var.region
   ssh_username  = "ubuntu"
+  subnet_id     = var.subnet_id
+  vpc_id        = var.vpc_id
 
   source_ami_filter {
     filters = {

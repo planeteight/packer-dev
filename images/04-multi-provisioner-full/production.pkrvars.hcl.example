@@ -1,0 +1,6 @@
+# Copy this file to production.pkrvars.hcl and fill in real values.
+# production.pkrvars.hcl is gitignored so it never gets committed.
+
+region        = "us-east-1"
+instance_type = "t3.medium"
+environment   = "production"

@@ -1,0 +1,26 @@
+# Local Packer state
+.packer.d/
+packer_cache/
+*.log
+
+# Environment-specific variable files
+# Keep real values local; only commit templates ending with .example
+*.pkrvars.hcl
+!*.pkrvars.hcl.example
+
+# Local credentials and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editor and OS clutter
+.vscode/
+.DS_Store
+.idea/
+
+# Common IaC state
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
